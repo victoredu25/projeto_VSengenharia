@@ -6,7 +6,7 @@ export default function Servicos() {
   const servicos = [
     {
       imagem: ProjetosImg,
-      titulo: "Projeto: B2 + B2 Turais",
+      titulo: "Projetos Estruturais",
       descricao:
         "Desenvolvimento de projetos estruturais com foco em eficiência energética e sustentabilidade, integrando tecnologia de ponta para otimização de recursos e segurança estrutural.",
     },
@@ -25,11 +25,22 @@ export default function Servicos() {
   ];
 
   return (
-    <div className="py-16 px-4 bg-[#DDD9CE] font-montserrat">
+    <div
+      className="py-16 px-4 bg-[#DDD9CE]"
+      style={{ fontFamily: "'Times New Roman', Times, serif" }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Título da seção */}
-        <h2 className="text-[80px] font-bold text-center mb-4 font-times">Nossos serviços</h2>
-        <p className="text-center text-gray-600 mb-12 text-[22px]">
+        <h2
+          className="text-[80px] font-bold text-center mb-4"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          Nossos serviços
+        </h2>
+        <p
+          className="text-center text-gray-600 mb-12 text-[22px]"
+          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+        >
           Veja nossas principais áreas de atuação no mercado
         </p>
 
@@ -38,14 +49,22 @@ export default function Servicos() {
             <div
               key={index}
               className="bg-[#E7E4DA] p-6 rounded-lg shadow-md text-center transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-[#D2CFBE] cursor-pointer"
+              style={{ fontFamily: "'Times New Roman', Times, serif" }}
             >
               <img
                 src={servico.imagem}
                 alt={servico.titulo}
                 className="w-full max-w-[150px] h-auto mx-auto mb-4"
               />
-              <h3 className="text-xl font-bold mb-2">{servico.titulo}</h3>
-              <p className="text-gray-700">{servico.descricao}</p>
+              <h3
+                className="text-xl font-bold mb-2"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                {servico.titulo}
+              </h3>
+              <p style={{ fontFamily: "'Times New Roman', Times, serif" }}>
+                {servico.descricao}
+              </p>
             </div>
           ))}
         </div>
