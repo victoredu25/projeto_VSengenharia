@@ -1,4 +1,4 @@
-import backgroundContato from "../assets/backgroundContato.png";
+import backgroundContato from "../assets/BackgroundContato.png";
 
 export default function ContatoSection() {
   return (
