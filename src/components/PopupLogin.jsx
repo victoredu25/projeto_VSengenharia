@@ -10,7 +10,7 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
   const [mostrarSenhaLogin, setMostrarSenhaLogin] = useState(false);
 
   // Estados do registro
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -30,7 +30,7 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, email, password }),
+          body: JSON.stringify({ name, email, password }),
         }
       );
 
@@ -40,7 +40,7 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
         alert("Conta criada com sucesso!");
         irParaLogin();
       } else {
-        alert(data.message || "Erro ao registrar.");
+        alert(data.error || "Erro ao registrar.");
       }
     } catch (error) {
       console.error("Erro ao registrar:", error);
@@ -207,8 +207,8 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
                   <p className="text-[20px] text-white">nome de usuario</p>
                 </div>
                 <input
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-[320px] h-[40px] rounded-[12px] bg-amber-50 px-3"
                 />
               </div>
