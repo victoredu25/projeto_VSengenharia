@@ -8,6 +8,4 @@ body {
   overflow-x: hidden; /* Bloqueia scroll horizontal */
 }
 
-@theme {
-  --font-times: "Times New Roman", serif;
-}
+
