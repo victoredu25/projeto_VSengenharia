@@ -48,17 +48,33 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
     }
   };
 
+  // Aqui tá a função atualizada de login com fetch real
   const handleLogin = async () => {
     if (loginEmail === "" || loginPassword === "") {
       alert("Preencha email e senha");
       return;
     }
 
-    // Aqui você pode colocar sua requisição real de login (fetch)
-    // Vou simular sucesso direto:
+    try {
+      const response = await fetch("https://backendvsengenharia.onrender.com/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
 
-    alert("Login realizado com sucesso!");
-    onLoginSuccess(); // AVISA O APP QUE DEU CERTO
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        alert(data.message || "Login realizado com sucesso!");
+        onLoginSuccess(); // AVISA O APP QUE DEU CERTO
+      } else {
+        alert(data.error || "Erro ao fazer login.");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      alert("Erro ao fazer login.");
+    }
   };
 
   return (
