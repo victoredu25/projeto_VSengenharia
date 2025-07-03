@@ -50,32 +50,34 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
 
   // Aqui tá a função atualizada de login com fetch real
   const handleLogin = async () => {
-    if (loginEmail === "" || loginPassword === "") {
-      alert("Preencha email e senha");
-      return;
+  if (loginEmail === "" || loginPassword === "") {
+    alert("Preencha email e senha");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://backendvsengenharia.onrender.com/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);  // salva o id aqui
+      alert(data.message || "Login realizado com sucesso!");
+      onLoginSuccess();
+    } else {
+      alert(data.error || "Erro ao fazer login.");
     }
+  } catch (error) {
+    console.error("Erro ao fazer login:", error);
+    alert("Erro ao fazer login.");
+  }
+};
 
-    try {
-      const response = await fetch("https://backendvsengenharia.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        alert(data.message || "Login realizado com sucesso!");
-        onLoginSuccess(); // AVISA O APP QUE DEU CERTO
-      } else {
-        alert(data.error || "Erro ao fazer login.");
-      }
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      alert("Erro ao fazer login.");
-    }
-  };
 
   return (
     <div
