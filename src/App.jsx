@@ -6,6 +6,7 @@ import Servicos from "./components/Servicos";
 import NossoTime from "./components/NossoTime";
 import ContatoSection from "./components/ContateNos";
 import PopupLogin from "./components/PopupLogin";
+import PaginaPerfil from "./components/PaginaPerfil"; // 👈 Importa aqui
 
 function App() {
   const [mostrarPopup, setMostrarPopup] = useState(false);
@@ -48,19 +49,7 @@ function App() {
             <ContatoSection />
           </>
         )}
-        {pagina === "perfil" && (
-          <div className="p-10">
-            <h1 className="text-4xl font-bold text-center mt-20">
-              Página do Perfil
-            </h1>
-            <button
-              onClick={() => setPagina("home")}
-              className="mt-10 block mx-auto text-blue-600 underline"
-            >
-              Voltar para Home
-            </button>
-          </div>
-        )}
+        {pagina === "perfil" && <PaginaPerfil onVoltar={() => setPagina("home")} />}
       </main>
 
       {mostrarPopup && (
