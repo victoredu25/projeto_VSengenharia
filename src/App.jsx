@@ -19,22 +19,32 @@ function App() {
   const onPerfilClick = () => {
     if (logado) {
       setPagina("perfil");
+      localStorage.setItem("pagina", "perfil");
     } else {
       abrirPopup();
     }
   };
 
-  // 👇 Verifica se já tem token/userId ao carregar o app
+  const handleVoltarParaHome = () => {
+    setPagina("home");
+    localStorage.setItem("pagina", "home");
+  };
+
+  // Verifica token/userId e página salva no localStorage ao iniciar o app
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
+    const paginaSalva = localStorage.getItem("pagina");
 
     if (token && userId) {
       setLogado(true);
+      if (paginaSalva) {
+        setPagina(paginaSalva);
+      }
     }
   }, []);
 
-  // Evita scroll do body quando o popup de login tá aberto
+  // Controla overflow quando popup aberto
   useEffect(() => {
     if (mostrarPopup) {
       document.body.style.overflow = "hidden";
@@ -48,7 +58,10 @@ function App() {
 
   return (
     <>
-      <Navbar onPerfilClick={onPerfilClick} />
+      <Navbar
+        onPerfilClick={onPerfilClick}
+        onHomeClick={handleVoltarParaHome} // Passa a função pro Navbar
+      />
 
       <main className="w-screen min-h-screen overflow-hidden bg-[#DDD9CE]">
         {pagina === "home" && (
@@ -62,9 +75,7 @@ function App() {
         )}
 
         {pagina === "perfil" && (
-          <PaginaPerfil
-            onVoltar={() => setPagina("home")}
-          />
+          <PaginaPerfil onVoltar={handleVoltarParaHome} />
         )}
       </main>
 
@@ -75,6 +86,7 @@ function App() {
             setLogado(true);
             fecharPopup();
             setPagina("perfil");
+            localStorage.setItem("pagina", "perfil");
           }}
         />
       )}
