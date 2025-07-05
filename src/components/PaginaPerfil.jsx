@@ -87,8 +87,7 @@ export default function PaginaPerfil({ onVoltar }) {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     setUserData(null);
-    // Se quiser redirecionar, descomente a linha abaixo e importe useNavigate:
-    // navigate("/login");
+    window.location.reload();
   };
 
   if (!userData) {

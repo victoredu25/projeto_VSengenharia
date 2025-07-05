@@ -11,7 +11,7 @@ import PaginaPerfil from "./components/PaginaPerfil";
 function App() {
   const [mostrarPopup, setMostrarPopup] = useState(false);
   const [logado, setLogado] = useState(false);
-  const [pagina, setPagina] = useState("home"); // "home" ou "perfil"
+  const [pagina, setPagina] = useState("home"); 
 
   const abrirPopup = () => setMostrarPopup(true);
   const fecharPopup = () => setMostrarPopup(false);
@@ -30,7 +30,7 @@ function App() {
     localStorage.setItem("pagina", "home");
   };
 
-  // Verifica token/userId e página salva no localStorage ao iniciar o app
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
@@ -44,7 +44,7 @@ function App() {
     }
   }, []);
 
-  // Controla overflow quando popup aberto
+  
   useEffect(() => {
     if (mostrarPopup) {
       document.body.style.overflow = "hidden";
@@ -60,7 +60,7 @@ function App() {
     <>
       <Navbar
         onPerfilClick={onPerfilClick}
-        onHomeClick={handleVoltarParaHome} // Passa a função pro Navbar
+        onHomeClick={handleVoltarParaHome} 
       />
 
       <main className="w-screen min-h-screen overflow-hidden bg-[#DDD9CE]">

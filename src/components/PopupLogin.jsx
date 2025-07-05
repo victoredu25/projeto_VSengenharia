@@ -48,7 +48,7 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
     }
   };
 
-  // Aqui tá a função atualizada de login com fetch real
+ 
   const handleLogin = async () => {
   if (loginEmail === "" || loginPassword === "") {
     alert("Preencha email e senha");
@@ -66,7 +66,7 @@ export default function PopupLogin({ onClose, onLoginSuccess }) {
 
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);  // salva o id aqui
+      localStorage.setItem("userId", data.userId);  
       alert(data.message || "Login realizado com sucesso!");
       onLoginSuccess();
     } else {

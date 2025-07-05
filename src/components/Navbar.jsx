@@ -5,7 +5,7 @@ export default function Navbar({ onPerfilClick, onHomeClick }) {
         <span
           className="text-2xl font-bold tracking-tight cursor-pointer"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
-          onClick={onHomeClick} // clicando no logo vai pra home
+          onClick={onHomeClick}
         >
           VS Engineering
         </span>
@@ -33,7 +33,7 @@ export default function Navbar({ onPerfilClick, onHomeClick }) {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              onPerfilClick(); // abre o popup ou perfil
+              onPerfilClick(); 
             }}
             className="text-lg font-medium hover:text-blue-400 transition-colors duration-300"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
