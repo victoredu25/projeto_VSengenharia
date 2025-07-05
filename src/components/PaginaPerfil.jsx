@@ -83,6 +83,14 @@ export default function PaginaPerfil({ onVoltar }) {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setUserData(null);
+    // Se quiser redirecionar, descomente a linha abaixo e importe useNavigate:
+    // navigate("/login");
+  };
+
   if (!userData) {
     return (
       <div className="p-10 text-center text-xl">Carregando dados do perfil...</div>
@@ -95,8 +103,7 @@ export default function PaginaPerfil({ onVoltar }) {
         Página do Perfil
       </h1>
 
-      {[
-        { label: "Nome", campo: "name" },
+      {[{ label: "Nome", campo: "name" },
         { label: "Email", campo: "email" },
         { label: "Senha", campo: "password" },
       ].map(({ label, campo }) => (
@@ -157,6 +164,13 @@ export default function PaginaPerfil({ onVoltar }) {
         className="mt-10 block mx-auto text-blue-600 underline"
       >
         Voltar para Home
+      </button>
+
+      <button
+        onClick={handleLogout}
+        className="mt-4 block mx-auto bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+      >
+        Sair
       </button>
     </div>
   );

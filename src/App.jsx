@@ -6,7 +6,7 @@ import Servicos from "./components/Servicos";
 import NossoTime from "./components/NossoTime";
 import ContatoSection from "./components/ContateNos";
 import PopupLogin from "./components/PopupLogin";
-import PaginaPerfil from "./components/PaginaPerfil"; // 👈 Importa aqui
+import PaginaPerfil from "./components/PaginaPerfil";
 
 function App() {
   const [mostrarPopup, setMostrarPopup] = useState(false);
@@ -24,6 +24,17 @@ function App() {
     }
   };
 
+  // 👇 Verifica se já tem token/userId ao carregar o app
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (token && userId) {
+      setLogado(true);
+    }
+  }, []);
+
+  // Evita scroll do body quando o popup de login tá aberto
   useEffect(() => {
     if (mostrarPopup) {
       document.body.style.overflow = "hidden";
@@ -49,7 +60,12 @@ function App() {
             <ContatoSection />
           </>
         )}
-        {pagina === "perfil" && <PaginaPerfil onVoltar={() => setPagina("home")} />}
+
+        {pagina === "perfil" && (
+          <PaginaPerfil
+            onVoltar={() => setPagina("home")}
+          />
+        )}
       </main>
 
       {mostrarPopup && (
